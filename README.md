@@ -1,1 +1,1 @@
-# Git_hw
+# Repo for AQA-JS course
