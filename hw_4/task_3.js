@@ -3,18 +3,16 @@ function word(wordSet) {
 vowels = "aeiou"
 vowels_count = 0
 consonants_count = 0
-for(i of word){
-    if(vowels.includes(i)){
-        vowels_count++;
-        }
-   else {
-    consonants_count++;
-        }
+for(const i of word){
+    if(vowels.includes(i)) vowels_count++; 
+	else if (typeof i === "symbol") {
+		consonants_count++;
+	}
 }
 console.log(`word contains vowels: ${vowels_count}, and  consonants: ${consonants_count}`);
 }
 
-word("ljsdfabe")
+word("ab21")
 
 //2
 const str = 'aAbZzyZ';    // 'bBcAazA' for +1 and 'zZaYyxY' for -1

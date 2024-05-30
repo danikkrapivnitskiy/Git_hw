@@ -1,9 +1,9 @@
 let age = 10;
 const age_2 = 18;
 const age_3 = 60;
-
-age = Number(age)
-
+if (isNaN(age)) {
+    throw new Error("Element is not a number")
+}
 switch (true) {
     case age < age_2: {
         console.log("You don't have access cause your age is " + age 

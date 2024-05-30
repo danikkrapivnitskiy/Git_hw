@@ -98,6 +98,7 @@ for (let i = 0; i <= 100; i++) {
         }
         default: console.log(i);
     }
+}
 
 //4.
 let arr_str = 'I am super engineer'.toLowerCase().split(' ');
@@ -109,6 +110,5 @@ for (let i = 0; i < arr_str.length; i++) {
     } else {
         new_str += arr_str[i].replace(arr_str[i][0], arr_str[i][0].toUpperCase());         
     }
-}
-console.log(new_str);
+    console.log(new_str);
 }
