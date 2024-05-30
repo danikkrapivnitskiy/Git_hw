@@ -15,7 +15,7 @@ console.log(`word contains vowels: ${vowels_count}, and  consonants: ${consonant
 word("ab21")
 
 //2
-const str = 'aAbZzyZ';    // 'bBcAazA' for +1 and 'zZaYyxY' for -1
+const str = 'ab 1Z';    // 'bBcAazA' for +1 and 'zZaYyxY' for -1
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const offset = 1;
 let newString = '';
@@ -35,6 +35,6 @@ for (let i = 0; i < str.length; i++) {
 		} else {
 			newString += alphabet.at(newIndex);
 		}
-	}
+	} else newString += str[i];
 }
 console.log(newString);
