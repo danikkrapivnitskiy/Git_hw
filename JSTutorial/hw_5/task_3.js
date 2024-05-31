@@ -12,12 +12,43 @@
 //5.
 
 function sumOfDigits(number) {
-    
-    let sum = 0;
-    sum += sumOfDigits()
-    // for (let digit of [...number]) {
-    //     sum += digit
-    // }
+    if (number < 10) {
+        return number;
+    }
 
-    if ()
+    let sum = 0;
+
+    for (let digit of String(number).split("")) {
+        sum += +digit;
+    }
+
+    return sumOfDigits(sum);
 }
+
+console.log(sumOfDigits(345));
+
+//6.
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+function getAloneSymbol(word) {
+    const arr = [...word];
+    let nextStr = "";
+    for (let i = 0; i < arr.length; i++) {
+        if (i != arr.length && arr[i] === arr[i + 1]) {
+            i++;
+            nextStr += [...alphabet][[...alphabet].indexOf(arr[i]) + 1]
+        } else nextStr += arr[i];
+    }
+
+    if (nextStr === word) {
+        return word;
+    }
+
+    return getAloneSymbol(nextStr);
+}
+
+console.log(getAloneSymbol("kkjjlkj"));
+console.log(getAloneSymbol("aa,bc"));
+console.log(getAloneSymbol("aa bc"));
+console.log(getAloneSymbol("aabc"));
