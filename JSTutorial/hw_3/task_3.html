@@ -11,7 +11,9 @@
         const maxAge = 60;
 
         let age = prompt('Print the age');
-        age = parseInt(age);
+        if (!isNaN(age)) {
+            age = parseInt(age);
+        }
         switch (true){
             case age < minAge : {
                 alert('You dont have access cause your age is ' + age +'. Its less then ' + minAge);
