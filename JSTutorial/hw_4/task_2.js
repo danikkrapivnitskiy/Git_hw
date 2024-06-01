@@ -31,7 +31,7 @@ const nameList = ["bytes", "Kb", "Mb", "Gb", "Tb"]
 function convertion(bytes) {
     for (let i = 0; i < nameList.length; i++) {
         if (bytes < 1000 || (i + 1) == nameList.length) {
-            console.log(bytes.toFixed(2) + " " + nameList[i]);
+            console.log(bytes.toFixed(1) + " " + nameList[i]);
             break;
         }
         bytes /= 1000;
