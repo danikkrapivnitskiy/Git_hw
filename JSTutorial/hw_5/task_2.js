@@ -78,15 +78,13 @@ console.log(removeDublicates(arr))
 
 function checkPalindrom(word) {
     const arr = [...word]
-    const reversedArray = arr.slice().reverse();
-    let isEqual = true;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] !== reversedArray[i]) {
-        isEqual = false;
-        break;
-        }
-    }
-    return isEqual;
+    const reversedArray = arr.slice().reverse();  
+    for (let i = 0; i < arr.length / 2; i++) {  
+        if (arr[i] !== reversedArray[i]) {  
+           return false;  
+        }  
+    }  
+    return true; 
 }
 
 console.log(checkPalindrom("anna"))
