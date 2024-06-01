@@ -1,5 +1,5 @@
 	function word(wordSet) {
-		let word = wordSet.toLocaleLowerCase()
+		let word = wordSet.toLowerCase()
 		const vowels = "aeiou"
 		let vowels_count = 0
 		let consonants_count = 0

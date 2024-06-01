@@ -10,6 +10,9 @@
  */
 
 function getEmployeeInfo(name) {
+    if (!isNaN(name)) {
+        throw new Error('Not a String')
+    }
     const names = ["Andy", "Garfild", "Tom", "Jerry", "Buggy"]
     const bills = [12, 15, 9, 18, 24]
     const info = [];

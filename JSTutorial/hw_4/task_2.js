@@ -85,15 +85,15 @@ rhomb(4)
 for (let i = 0; i <= 100; i++) {
     switch (true) {
         case i % 15 == 0: {
-            console.log("Число делится и на 3 и на 5");
+            console.log("Число делится и на 3 и на 5: " + i);
             break;
         }
         case i % 3 == 0: {
-            console.log("Число делится на 3");
+            console.log("Число делится на 3: " + i);
             break;
         }
         case i % 5 == 0: {
-            console.log("Число делится на 5");
+            console.log("Число делится на 5: " + i);
             break;
         }
         default: console.log(i);
