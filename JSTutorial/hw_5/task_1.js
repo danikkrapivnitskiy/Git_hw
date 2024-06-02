@@ -10,7 +10,7 @@
  */
 
 function getEmployeeInfo(name) {
-    if (!isNaN(name)) {
+    if (typeof name === 'string') {
         throw new Error('Not a String')
     }
     const names = ["Andy", "Garfild", "Tom", "Jerry", "Buggy"]
