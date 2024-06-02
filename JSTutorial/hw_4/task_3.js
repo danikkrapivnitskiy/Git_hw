@@ -1,19 +1,24 @@
-	function word(wordSet) {
+function hasSpecialChars(str) {
+    return str.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/) !== null; 
+}
+
+function word(wordSet) {
 		let word = wordSet.toLowerCase()
 		const vowels = "aeiou"
 		let vowels_count = 0
 		let consonants_count = 0
 	for(const i of word) {
+		console.log(typeof i)
 		if(vowels.includes(i)) {
 			vowels_count++; 
-		} else if (isNaN(i)) {
+		} else if (isNaN(i) && !hasSpecialChars(i)) {
 			consonants_count++;
 		}
 	}
 		console.log(`word contains vowels: ${vowels_count}, and  consonants: ${consonants_count}`);
 	}
 
-word("ab21")
+word("ab#21")
 
 //2
 const str = 'ab 1Z';    // 'bBcAazA' for +1 and 'zZaYyxY' for -1
