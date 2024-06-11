@@ -12,6 +12,5 @@
 let arr = [1, 2, 7, 5, 10, 5, 3, 4, 8, 9, 12]
 const missingNumber = [...new Set(arr)]
     .sort((a, b) => a - b)
-    .filter(x => typeof x === "number" && x !==1 && !arr.includes(x - 1))
-    .map(x => x - 1);
+     .find((num, i, arr) => arr.indexOf(num) !== (num - 1)) - 1
 console.log(`Missing numbers ${[...missingNumber]}`);
