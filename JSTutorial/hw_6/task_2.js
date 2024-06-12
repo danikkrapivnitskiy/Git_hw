@@ -20,39 +20,22 @@
  */
 //1
   const sentenseStr = "I am the best AQA ever!";
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-  const mapToNumber = [...sentenseStr].map(symbol => alphabet.includes(symbol.toLowerCase()) ? alphabet.indexOf(symbol.toLowerCase()) : symbol)
+  const sentenseArr = [...sentenseStr];
+  const mapToNumber = sentenseArr.map((i) => sentenseArr.filter(symbol => i === symbol).length);
   console.log(...mapToNumber);
 
 //2
   const prices = [64, 7556, 345, 7556, 345, 7556, 345, 7556, 433, 345, 756, 123, 942, 3112, 421, 9341, 1212, 8, 43, 41, 345, 341, 21, 321, 123];
-  const avgPrice = prices.reduce((result, number) => result += number / prices.length, 0).toFixed(2);
+  const avgPrice = prices.reduce((result, number) => result += number / prices.length, 0).toFixed(0);
   console.log(avgPrice)
 
 //3
   const words = ["sdfsdfsdfaaa", "lknjckbvhjibeiru", "oiusdfi"]
-  const filteredArr = words.reduce((result, word) => {
-    const vowels = "aeiou";
-    let count = 0;
-    for (let i of [...word]) {
-        if (vowels.includes(i.toLowerCase())) {
-            count++;
-        }
-    }
-    result.set(word, count);
-    return result;
-  }, new Map());
-
-  const afterMap = [...filteredArr.entries()];
-  let max = 0;
-  let sortedArray = [];
-  for (let i = 0; i < afterMap.length; i++) {
-    if (afterMap[i][1] >= max) {
-        sortedArray.unshift(afterMap[i][0]);
-    }
+  const arraySortByCountVowel = [...words].sort((a, b) => getVowelCount(a) - getVowelCount(b));
+  function getVowelCount(word) {
+      return  [...word].filter(symbol => symbol.includes('aeijouy'));
   }
-
-  console.log(sortedArray);
+  console.log(arraySortByCountVowel)
 
 //4
 const arr = [[['(']], ')', '(', ')', ')', ['(', ['('], [')']]]
