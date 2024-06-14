@@ -225,7 +225,7 @@ function getEnterpriseByIdOrName(key) {
 }
 function addDepartment(id, name) {
     const enterprise = getEnterpriseByIdOrName(id);
-    const nejObj = {
+    const newObj = {
         name,
         employees_count: [],
         id : enterprise.id + 12,
