@@ -178,11 +178,8 @@ const enterprises = [
 
 //1
 function countEmployees(departments) {
-    return departments.reduce(function(total, department) {
-        return total + department.employees_count;
-    }, 0);
+    return departments.reduce((total, department) => total + department.employees_count, 0);
 }
-console.log(countEmployees(enterprises[0].departments));
 const getCommonInfo = (company) => {
     company.forEach(enterprise => {
             console.log(`${enterprise.name} (${countEmployees(enterprise.departments)} сотрудников)`);
