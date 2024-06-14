@@ -183,6 +183,7 @@ function countEmployees(departments) {
 const getCommonInfo = (company) => {
     company.forEach(enterprise => {
             console.log(`${enterprise.name} (${countEmployees(enterprise.departments)} сотрудников)`);
+          if (enterprise.departments) 
             enterprise.departments.forEach(department => console.log(`- ${department.name} (${department.employees_count})`));
     })
 }
@@ -196,7 +197,7 @@ function getFactoryByNameORId(key) {
             if (department.id === key || department.name === key) name = enterprise.name;
         })
     })
-    return name;
+    return name ? name : `There is no department with id == ${key} or name == ${key}`;
 }
 console.log(getFactoryByNameORId("Отдел тестирования"))
 console.log(getFactoryByNameORId(6))
