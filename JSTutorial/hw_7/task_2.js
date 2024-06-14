@@ -183,6 +183,7 @@ function countEmployees(departments) {
 const getCommonInfo = (company) => {
     company.forEach(enterprise => {
             console.log(`${enterprise.name} (${countEmployees(enterprise.departments)} сотрудников)`);
+          if (enterprise.departments) 
             enterprise.departments.forEach(department => console.log(`- ${department.name} (${department.employees_count})`));
     })
 }
