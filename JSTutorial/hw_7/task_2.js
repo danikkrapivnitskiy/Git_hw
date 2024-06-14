@@ -197,7 +197,7 @@ function getFactoryByNameORId(key) {
             if (department.id === key || department.name === key) name = enterprise.name;
         })
     })
-    return name;
+    return name ? name : `There is no department with id == ${key} or name == ${key}`;
 }
 console.log(getFactoryByNameORId("Отдел тестирования"))
 console.log(getFactoryByNameORId(6))
