@@ -15,28 +15,18 @@ const inventory = {
         { id: 3, name: "Pineapple", quantity: 5, price: 1.5 },
     ],
     addItem: function ({ name, quantity, price }) {
+        const newId = Math.max(...this.items.map((el) => el.id)) + 1;
         this.items.push(
-            { id : this.getNewItemId(), name, quantity, price }
+            { id : newId, name, quantity, price }
         )
     },
     removeItem: function (id) {
-        this.items.splice(this.findItemById(id), 1);
+        const indexItem = this.items.findIndex(obj => obj.id === id);
+        this.items.splice(indexItem, 1);
     },
     getTotalValue: function () {
         return this.items.reduce((total, obj) => obj.price * obj.quantity, 0);
     },
-    getNewItemId: function () {
-        let counter = 0;
-        this.items.forEach(obj => {
-            if (counter < obj.id) {
-                counter = obj.id;
-            }
-        })
-        return ++counter;
-    },
-    findItemById: function (id) {
-        return this.items.indexOf(this.items.find(obj => obj.id === id));
-    }
 };
 
 // Adding a new item
