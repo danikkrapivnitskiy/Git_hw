@@ -191,13 +191,16 @@ getCommonInfo(enterprises);
 
 //2
 function getFactoryByNameORId(key) {
-    let name = null;
+    let foundEnterprise = null;
     enterprises.forEach(enterprise => {
-        enterprise.departments.find(department => {
-            if (department.id === key || department.name === key) name = enterprise.name;
-        })
+        const foundDept = enterprise.departments.find(department =>
+            department.id === key || department.name === key)
+        if(foundDept) foundEnterprise = enterprise
     })
-    return name ? name : `There is no department with id == ${key} or name == ${key}`;
+
+    if(!foundEnterprise) throw new Error()
+    return foundEnterprise
+
 }
 console.log(getFactoryByNameORId("Отдел тестирования"))
 console.log(getFactoryByNameORId(6))
