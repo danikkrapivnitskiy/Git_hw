@@ -8,15 +8,16 @@
 
 //1
 function counter(n) {
-    let arr = []
+    let arr = new Set;
     return () => {
-        let random = getRandomNumber(1, n);
-        if (arr.length === n) {
-            console.log('All numbers were received');
-        } else {
-            arr.push(random);
-            console.log(random);
-        }
+        if (arr.size !== n) {
+            let randomNumber = getRandomNumber(1, n);
+            while (arr.has(randomNumber)) {
+                randomNumber = getRandomNumber(1, n);
+            }
+            arr.add(randomNumber);
+            console.log(randomNumber);
+        } else console.log('All numbers were received');
     }
 }
 function getRandomNumber(min, max) {
