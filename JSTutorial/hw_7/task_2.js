@@ -191,13 +191,16 @@ getCommonInfo(enterprises);
 
 //2
 function getFactoryByNameORId(key) {
-    let name = null;
+    let foundEnterprise = null;
     enterprises.forEach(enterprise => {
-        enterprise.departments.forEach(department => {
-            if (department.id === key || department.name === key) name = enterprise.name;
-        })
+        const foundDept = enterprise.departments.find(department =>
+            department.id === key || department.name === key)
+        if(foundDept) foundEnterprise = enterprise
     })
-    return name ? name : `There is no department with id == ${key} or name == ${key}`;
+
+    if(!foundEnterprise) throw new Error()
+    return foundEnterprise
+
 }
 console.log(getFactoryByNameORId("Отдел тестирования"))
 console.log(getFactoryByNameORId(6))
@@ -216,19 +219,27 @@ addEnterprise("Предприятие 4")
 console.log(enterprises);
 
 //4
-function getEnterpriseByIdOrName(key) {
+function getEnterpriseByIdOrName(key, company) {
     let enterpriseObj = null;
-    enterprises.forEach(enterprise => {
+    company.forEach(enterprise => {
         if (enterprise.id === key || enterprise.name === key) enterpriseObj = enterprise
     })
     return enterpriseObj;
 }
+function findNextEnterpriseId() {
+    const ids = enterprises.reduce((res, el) => {
+        res.push(el.id);
+        if (el.departments) res.push(...el.departments.map((el) => el.id));
+        return res;
+    }, []);
+    return Math.max(...ids) + 1;
+}
 function addDepartment(id, name) {
-    const enterprise = getEnterpriseByIdOrName(id);
-    const newObj = {
+    const enterprise = getEnterpriseByIdOrName(id, enterprises);
+    const nejObj = {
         name,
         employees_count: [],
-        id : enterprise.id + 12,
+        id : findNextEnterpriseId(),
     }
     enterprise.departments.push(nejObj);
 }
@@ -236,11 +247,11 @@ addDepartment(2, "Новый отдел");
 console.log(enterprises[3])
 
 //5
-function editDepartment(id, name) {
-    const enterprise = getEnterpriseByIdOrName(id);
+function editEnterpriseName(id, name, company) {
+    const enterprise = getEnterpriseByIdOrName(id, company);
     enterprise.name = name;
 }
-editDepartment(2, "Измененное предприятие")
+editEnterpriseName(2, "Измененное предприятие", enterprises)
 console.log(enterprises[3])
 
 //6
@@ -278,11 +289,9 @@ function findEmployeeByDepartmentIdAndSetNewValue(id, setValue) {
         enterprise.departments.map(department => {
             if (department.id === id) {
                 count = department.employees_count;
-                if (setValue !== "undefined") {
-                    if (setValue === 0) {
-                        department.employees_count = setValue;
-                    } else department.employees_count += setValue;
-                }
+                if (setValue === 0) {
+                    department.employees_count = setValue;
+                } else department.employees_count += setValue;
             }
         })
     });

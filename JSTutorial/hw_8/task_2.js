@@ -8,13 +8,20 @@
 
 //1
 function counter(n) {
-    let start = 1;
-    let counter = n;
+    let arr = new Set;
     return () => {
-        if (start > counter) {
-            console.log('All numbers were received');
-        } else console.log(start++);
+        if (arr.size !== n) {
+            let randomNumber = getRandomNumber(1, n);
+            while (arr.has(randomNumber)) {
+                randomNumber = getRandomNumber(1, n);
+            }
+            arr.add(randomNumber);
+            console.log(randomNumber);
+        } else console.log('All numbers were received');
     }
+}
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const count = counter(5);
 count()
@@ -24,4 +31,3 @@ count()
 count()
 count()
 count()
-
