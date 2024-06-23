@@ -1,0 +1,30 @@
+class ITSpecialist {
+    #name
+    #grade
+    #experience_in_years
+    #age
+    #country
+    #_salary
+    constructor(name, grade, experience_in_years, salary) {
+        this.name = name;
+        this.grade = grade;
+        this.experience_in_years = experience_in_years;
+        this.salary = salary;
+    }
+    getAllInfo() {
+        return `${this.#name} has grade ${this.#grade} after ${this.#experience_in_years} years of experience`;
+    }
+    set country(country) {
+        if (typeof country !== "string") {
+            throw new Error("Invalid name type");
+        }
+        this.#country = country;
+    }
+    get salary() {
+        return this.#_salary;
+    }
+
+    get name() {
+        return this.#name;
+    }
+}
