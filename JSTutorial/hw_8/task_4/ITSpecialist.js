@@ -5,11 +5,12 @@ class ITSpecialist {
     #age
     #country
     #salary
-    constructor(name, grade, experience_in_years, salary) {
-        this.name = name;
-        this.grade = grade;
-        this.experience_in_years = experience_in_years;
-        this.salary = salary;
+    constructor(name, grade, age, experience_in_years, salary) {
+        this.#name = name;
+        this.#grade = grade;
+        this.#age = age;
+        this.#experience_in_years = experience_in_years;
+        this.#salary = salary;
     }
     getAllInfo() {
         return `${this.#name} has grade ${this.#grade} after ${this.#experience_in_years} years of experience`;
