@@ -4,7 +4,7 @@ class ITSpecialist {
     #experience_in_years
     #age
     #country
-    #_salary
+    #salary
     constructor(name, grade, experience_in_years, salary) {
         this.name = name;
         this.grade = grade;
@@ -21,7 +21,7 @@ class ITSpecialist {
         this.#country = country;
     }
     get salary() {
-        return this.#_salary;
+        return this.#salary;
     }
 
     get name() {

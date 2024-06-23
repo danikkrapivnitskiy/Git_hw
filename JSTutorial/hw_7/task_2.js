@@ -226,12 +226,20 @@ function getEnterpriseByIdOrName(key, company) {
     })
     return enterpriseObj;
 }
+function findNextEnterpriseId() {
+    const ids = enterprises.reduce((res, el) => {
+        res.push(el.id);
+        if (el.departments) res.push(...el.departments.map((el) => el.id));
+        return res;
+    }, []);
+    return Math.max(...ids) + 1;
+}
 function addDepartment(id, name) {
     const enterprise = getEnterpriseByIdOrName(id, enterprises);
     const nejObj = {
         name,
         employees_count: [],
-        id : enterprise.id + 12,
+        id : findNextEnterpriseId(),
     }
     enterprise.departments.push(nejObj);
 }

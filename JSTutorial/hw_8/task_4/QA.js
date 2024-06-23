@@ -1,8 +1,8 @@
 class QA extends ITSpecialist{
     #isAqa;
-    constructor() {
-        super();
-        this.#isAqa = true;
+    constructor(name, grade, experience_in_years, salary, isAqa) {
+        super(name, grade, experience_in_years, salary);
+        this.#isAqa = isAqa;
     }
     get isAqa() {
         return this.#isAqa;

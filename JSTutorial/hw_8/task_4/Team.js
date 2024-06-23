@@ -4,15 +4,15 @@ class Team {
     #release_date
     #daily_standup_time
     #teammates = []
-    #tasks = []
+    #tasks = new Set;
 
     constructor(name, sprint_duration, release_date, daily_standup_time, teammates, tasks) {
-        this.name = name
-        this.sprint_duration = sprint_duration
-        this.release_date = release_date;
-        this.daily_standup_time = daily_standup_time;
-        this.teammates = teammates;
-        this.tasks = tasks;
+        this.#name = name
+        this.#sprint_duration = sprint_duration
+        this.#release_date = release_date;
+        this.#daily_standup_time = daily_standup_time;
+        this.#teammates = teammates;
+        this.#tasks = tasks;
     }
 
     get name() {
@@ -63,7 +63,7 @@ class Team {
         this.#teammates.push(newTeammate);
     }
 
-    removeTeammate({name}) {
+    removeTeammate(name) {
         if (typeof name !== "string") {
             throw new Error("Invalid name type");
         }
@@ -86,18 +86,38 @@ class Team {
 
     showTeammatesBySpecialization(specialization) {
         let predicate;
-        switch (specialization) {
-            case "developer" : predicate = team => team.isWritingUnitTests(); break;
-            case "aqa" : predicate = team => team.isAqa(); break;
-            case "manager" : predicate = team => team.isScrumMaster(); break;
+        if (specialization instanceof Developer) {
+            predicate = team => team.isWritingUnitTests();
+        } else if (specialization instanceof QA) {
+            predicate = team => team.isAqa();
+        } else if (specialization instanceof Manager) {
+            predicate = team => team.isScrumMaster();
         }
         if (predicate !== undefined) {
-            return this.#teammates.filter(team => team.name() === name);
+            return this.#teammates.filter(predicate);
         } else throw new Error("Specialization not found")
     }
 
     showAllTasks() {
-        return this.#teammates.map(teammate => teammate.featureName());
+        return this.#tasks;
     }
 
+    addTask(task) {
+        this.#tasks.add(task);
+    }
+
+    deleteTask(task) {
+        this.#tasks.delete(task)
+    }
+
+    editTask(taskName, key, value) {
+        const task = Array.from(this.#tasks).find(task => task.featureName === taskName);
+        if (task.featureName === key) {
+            task.featureName = value;
+        }  else if (task.userStoryNumber === key) {
+            task.userStoryNumber = value;
+        }   else if (task.estimations === key) {
+            task.estimations = value;
+        }
+    }
 }
