@@ -85,17 +85,13 @@ class Team {
     }
 
     showTeammatesBySpecialization(specialization) {
-        let predicate;
-        if (specialization instanceof Developer) {
-            predicate = team => team.isWritingUnitTests();
-        } else if (specialization instanceof QA) {
-            predicate = team => team.isAqa();
-        } else if (specialization instanceof Manager) {
-            predicate = team => team.isScrumMaster();
-        }
-        if (predicate !== undefined) {
-            return this.#teammates.filter(predicate);
-        } else throw new Error("Specialization not found")
+        const specializationMapper = {
+            developer: Developer,
+            qa: QA,
+            manager: Manager,
+        };
+        if (!specializationMapper[specialization]) return [];
+        return this.#teammates.filter((teammate) => teammate instanceof specializationMapper[specialization]);
     }
 
     showAllTasks() {
