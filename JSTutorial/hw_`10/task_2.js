@@ -21,7 +21,7 @@
 
 //1
 function delay(callback, milliseconds) {
-    setTimeout(() => { callback(); }, milliseconds);
+    setTimeout(callback, milliseconds);
 }
 delay(() => console.log('hello'), 2000)
 
