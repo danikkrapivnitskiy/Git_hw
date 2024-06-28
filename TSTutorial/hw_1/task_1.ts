@@ -63,8 +63,8 @@ interface IEmployee {
     address: string;
 }
 
-function isItEmployee(obj: object): obj is ItEmployee {
-    return true;
+function isItEmployee(obj: ItEmployee | IEmployee): obj is ItEmployee {
+    return "projectNames" in obj;
 }
 function getEmployeeInfo(employee: IEmployee | ItEmployee) {
     let info = `${employee.name} ${employee.surname} is employee with salary ${employee.salary}$ `
